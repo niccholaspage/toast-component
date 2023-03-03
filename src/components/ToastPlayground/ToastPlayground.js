@@ -4,11 +4,21 @@ import Button from '../Button';
 
 import styles from './ToastPlayground.module.css';
 
+import Toast from '../Toast/Toast';
+
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastPlayground() {
   const [message, setMessage] = React.useState("");
   const [variant, setVariant] = React.useState(VARIANT_OPTIONS[0]);
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  function popToast(event) {
+    event.preventDefault();
+
+    setIsOpen(true);
+  }
+
   return (
     <div className={styles.wrapper}>
       <header>
@@ -16,7 +26,9 @@ function ToastPlayground() {
         <h1>Toast Playground</h1>
       </header>
 
-      <div className={styles.controlsWrapper}>
+      {isOpen && <Toast variant={variant} onDismissal={() => setIsOpen(false)}>{message}</Toast>}
+
+      <form onSubmit={popToast} className={styles.controlsWrapper}>
         <div className={styles.row}>
           <label
             htmlFor="message"
@@ -48,8 +60,6 @@ function ToastPlayground() {
                 {option}
               </label>
             ))}
-
-            {/* TODO Other Variant radio buttons here */}
           </div>
         </div>
 
@@ -61,7 +71,7 @@ function ToastPlayground() {
             <Button>Pop Toast!</Button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
