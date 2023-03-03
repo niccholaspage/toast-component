@@ -10,21 +10,9 @@ import { ToastContext } from '../ToastProvider/ToastProvider';
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastPlayground() {
-  const { addToast, dismissAllToasts } = React.useContext(ToastContext);
+  const { addToast } = React.useContext(ToastContext);
   const [message, setMessage] = React.useState("");
   const [variant, setVariant] = React.useState(VARIANT_OPTIONS[0]);
-
-  React.useEffect(() => {
-    function handleKeyDown(event) {
-      if (event.key === "Escape") {
-        dismissAllToasts();
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [dismissAllToasts]);
 
   function popToast(event) {
     event.preventDefault();
