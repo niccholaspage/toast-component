@@ -24,7 +24,7 @@ function ToastPlayground() {
     window.addEventListener("keydown", handleKeyDown);
 
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [dismissAllToasts]);
 
   function popToast(event) {
     event.preventDefault();

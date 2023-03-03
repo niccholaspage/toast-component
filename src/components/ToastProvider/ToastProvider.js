@@ -26,7 +26,7 @@ function ToastProvider({children}) {
     dismissToast,
     dismissAllToasts,
     addToast
-  }), [toasts, dismissToast, addToast]);
+  }), [toasts, dismissToast, addToast, dismissAllToasts]);
 
   return (
     <ToastContext.Provider value={value}>
