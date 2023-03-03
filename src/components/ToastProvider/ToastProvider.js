@@ -13,15 +13,15 @@ function ToastProvider({children}) {
     }]);
   }, []);
 
-  const handleToastDismissal = React.useCallback((id) => {
+  const dismissToast = React.useCallback((id) => {
     setToasts(toasts => [...toasts].filter(toast => toast.id !== id));
   }, []);
 
   const value = React.useMemo(() => ({
     toasts,
-    handleToastDismissal,
+    dismissToast,
     addToast
-  }), [toasts, handleToastDismissal, addToast]);
+  }), [toasts, dismissToast, addToast]);
 
   return (
     <ToastContext.Provider value={value}>
